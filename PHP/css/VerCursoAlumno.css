@@ -1,4 +1,5 @@
-.cursoinscrito {
+.curso,
+.nivel {
     display: block;
     width: 40%;
     margin: 3% auto 0 auto;
@@ -11,7 +12,7 @@
     text-align: center;
 }
 
-.cursoinscrito button {
+.nivel button {
     display: block;
     width: 30%;
     margin: 5% auto;
@@ -27,13 +28,13 @@
     background-color: #0791E6;
 }
 
-video{
+video {
     display: block;
     width: 80%;
     margin: 0 auto;
 }
 
-.cursoinscrito button:hover {
+.nivel button:hover {
     transform: scale(1.05);
 }
 
@@ -50,7 +51,7 @@ video{
 }
 
 .paginacion a {
-    display: inline-block;
+    display: block;
     margin: 0 20px;
     font-weight: bold;
     font-size: 15px;

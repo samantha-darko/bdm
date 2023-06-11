@@ -183,11 +183,15 @@ class ApiAlumno
 
             foreach ($result as $row) {
                 $array[] = array(
-                    "id_recursos" => $row['id_recursos'],
-                    "recurso" => $row['recurso'],
-                    "tipo" => $row['tipo'],
-                    "contenido" => $row['contenido'],
-                    "titulo_curso" => $row['curso']
+                    "id_cursoinscrito" => $row['id_cursoinscrito'],
+                    "curso_titulo" => $row['curso_titulo'],
+                    "curso_imagen" => $row['curso_imagen'],
+                    "id_recurso" => $row['id_recurso'],
+                    "recurso_nombre" => $row['recurso_nombre'],
+                    "nivel_titulo" => $row['nivel_titulo'],
+                    "nivel_id" => $row['nivel_id'],
+                    "recurso_tipo" => $row['recurso_tipo'],
+                    "contenido" => $row['contenido']
                 );
             }
             return $array;

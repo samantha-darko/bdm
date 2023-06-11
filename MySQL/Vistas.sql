@@ -27,7 +27,9 @@ FROM curso;
 #---------------------- VISTA RECURSOS CURSO -----------------------#
 DROP VIEW IF EXISTS vista_recursos_curso;
 CREATE VIEW vista_recursos_curso AS
-SELECT ci.id_curso_inscrito, c.titulo AS curso, r.id_recursos, r.nombre AS recurso, r.tipo, r.contenido
+SELECT ci.id_curso_inscrito AS id_cursoinscrito,
+c.titulo AS curso_titulo, c.imagen AS curso_imagen, r.id_recursos AS id_recurso, r.nombre AS recurso_nombre, 
+n.titulo AS nivel_titulo, n.id_nivel AS nivel_id, r.tipo recurso_tipo, r.contenido
 FROM curso_inscrito ci
 JOIN curso c ON ci.id_curso_f = c.id_curso
 JOIN nivel n ON n.id_curso_f = c.id_curso

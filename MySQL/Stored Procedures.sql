@@ -531,9 +531,9 @@ begin
 	end if;
     
 	if opcion = 'vista_recursos_curso' then
-		SELECT id_curso_inscrito, curso, id_recursos, recurso, tipo, contenido
-        FROM vista_recursos_curso
-        where id_curso_inscrito = spid;
+		SELECT id_cursoinscrito, curso_titulo, curso_imagen, id_recurso, recurso_nombre, nivel_titulo, nivel_id, recurso_tipo, contenido 
+        from vista_recursos_curso
+        where id_cursoinscrito = spid;
 	end if;
     
 	if opcion = 'vista_curso_inscrito' then

@@ -40,10 +40,6 @@ function Paginar()
         $total = count($niveles);
         $stmt = $api->ListadoNiveles($curso, $offset, 1);
         $items .= '<div class="niveles">';
-        /*$items .= '<div class="division">';
-        $items .= '<label>Título Curso</label>';
-        $items .= '<h2>' . $datoscurso[1] . '</h2>';
-        $items .= '</div>';*/
         while ($dato = $stmt->fetch((PDO::FETCH_ASSOC))) {
             $items .= '<div class="division">';
             $items .= '<label>Título Nivel</label>';
