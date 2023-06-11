@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ECECF0;
+    color: #0C1633;
+    width: 100%;
+    height: 100%;
+}
+
+/**** MENU ****/
+.box-menu {
+    width: 100%;
+    background-color: #0C1633;
+    height: 60px;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.fotoperfil {
+    width: 50px;
+    height: 50px;
+}
+
+.buscador {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+#nav-search {
+    width: 40%;
+    height: 40px;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 0 0 0 10px;
+    border: none;
+}
+
+#nav-search:focus {
+    border: none;
+    border-radius: 5px;
+    border-color: transparent;
+    outline: 0 none;
+}
+
+#btn-search {
+    height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0 10px;
+    border: none;
+    color: #1E212B;
+    background-color: transparent;
+}
+
+#btn-search:hover {
+    color: #F2F2F2;
+    background-color: #98CA3F;
+}
+
+/* barra de menu */
+
+#menu-left ul,
+#menu-right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#menu-left ul li,
+#menu-right ul li {
+    display: block;
+    background-color: #0C1633;
+    padding: 0 3px;
+    width: auto;
+    margin: 0 auto;
+}
+
+#menu-left ul a,
+#menu-right ul a {
+    display: block;
+    color: #FBFBFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px 30px;
+    margin: 0 auto;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#menu-left ul li {
+    display: block;
+    position: relative;
+    float: left;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#menu-right ul li {
+    position: relative;
+    float: right;
+    margin: 0 auto;
+    padding: 0;
+    min-width: 16%;
+    text-align: center;
+}
+
+#menu-left ul li a,
+#menu-right ul li a {
+    transition: background-color .5s;
+}
+
+#menu-left ul li a:hover,
+#menu-right ul li a:hover {
+    color: #F2F2F2;
+    background: #98CA3F;
+}
+
+/* menu desplegable derecha */
+#menu-right ul li a img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: auto 8px auto 0;
+    padding: 0;
+    object-fit: fill;
+}
+
+#menu-right ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #eee;
+    padding: 0;
+}
+
+#menu-right ul ul li {
+    float: none;
+    width: auto;
+}
+
+#menu-right ul ul a {
+    line-height: 120%;
+    padding: 10px 20px 10px 0;
+    font-size: 16px;
+    text-transform: none;
+    text-align: right;
+}
+
+#menu-right ul li:hover>ul {
+    display: block;
+}
+
+/* menu desplegable izquierda */
+#menu-left ul li a img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 2px 0 0;
+    padding: 0;
+    object-fit: fill;
+}
+
+#menu-left ul ul {
+    display: none;
+    width: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #eee;
+    padding: 0;
+}
+
+#menu-left ul ul li {
+    float: none;
+    width: auto;
+}
+
+#menu-left ul ul a {
+    display: block;
+    line-height: 120%;
+    width: auto;
+    margin: 0 auto;
+    padding: 10px 0 10px 10px;
+    font-size: 16px;
+    text-transform: none;
+    text-align: left;
+}
+
+#menu-left ul li:hover>ul {
+    display: block;
+}
+
+/**** PIE DE PAGINA ****/
+
+.box-footer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #F2F2F2;
+    color: #FBFBFF;
+    overflow: hidden;
+    margin: 50px auto;
+    position: relative;
+    z-index: 0;
+}
+
+/* VENTANA MODAL */
+@keyframes animarsuperior {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contenido-modal {
+    position: block;
+    background-color: #F8F9F9;
+    margin: auto;
+    padding: 50px;
+    width: 50%;
+    border-radius: 5px;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-animation-name: animarsuperior;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animarsuperior;
+    animation-duration: 0.5s;
+
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.contenido-modal p {
+    display: block;
+    text-align: center;
+}
+
+.contenido-modal img{
+    width: 100%;
+}
+
+.contenido-modal i {
+    display: block;
+    width: 100%;
+    font-size: 300%;
+    text-align: center;
+}
+
+.aviso-modal a {
+    color: #FEA82F;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.aviso-modal a:hover {
+    color: #1E212B;
+    background-size: 100% 2px;
+}
+
+.fa-circle-check{
+    color: #98CA3F;
+}
+
+.fa-circle-xmark{
+    color:#A9281D;
+}

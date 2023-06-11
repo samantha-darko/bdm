@@ -1,0 +1,76 @@
+.box-container {
+    display: block;
+    width: 80%;
+    margin: 60px auto 0 auto;
+    padding: 30px;
+    border-radius: 2px;
+    background-color: #F2F2F2;
+    box-shadow: 2px 2px 20px #000000;
+    position: relative;
+    z-index: 0;
+}
+
+.sinventas{
+    display: block;
+    margin: 3% auto;
+    text-align: center;
+}
+
+.sinventas img{
+    display: block;
+    margin: 3% auto;
+    text-align: center;
+    width: 60%;
+}
+
+.box-container h2 {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.info {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding: 2% auto;
+    text-align: center;
+}
+
+.info h3 {
+    display: block;
+    width: 100%;
+    margin: 2% auto;
+}
+
+.info label {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px gray solid;
+    padding: 1% 0;
+}
+
+.info a {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1E212B;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.info a:hover {
+    color: #FEA82F;
+    background-size: 100% 2px;
+}
+
+#total{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 5% auto 2% auto;
+}

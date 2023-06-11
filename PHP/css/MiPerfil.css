@@ -1,0 +1,307 @@
+.encabezado {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+}
+
+.encabezado h1 {
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.datos {
+    width: 85%;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    cursor: pointer;
+    justify-items: center;
+}
+
+.foto {
+    height: 300px;
+    width: 300px;
+    margin: 0;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 6px 2px #FEA82F;
+    border-radius: 50%;
+    float: right;
+}
+
+.paginacion {
+    width: 100%;
+    grid-column: span 2;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.paginacion a {
+    color: #1E212B;
+    text-decoration: none;
+    margin: 0 40px;
+    padding: 10px 15px;
+
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.paginacion a:hover {
+    color: #FEA82F;
+    background-size: 100% 2px;
+}
+
+.btnForm {
+    margin: 20px 80px;
+    width: 200px;
+    height: 40px;
+    background-color: #1E212B;
+    color: #F8F9F9;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-transition: all 1.0s;
+    transition: ease-in 0.1s;
+}
+
+.btnForm:hover {
+    background-color: #FEA82F;
+    color: #1E212B;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale;
+}
+
+.groupB p {
+    width: 100%;
+    margin: 80px 0 15px 0;
+    font-weight: bold;
+    color: #F8F9F9;
+    background-color: #AF1B3F;
+    font-size: 18px;
+    height: 26px;
+    display: none;
+}
+
+.groupB,
+.encabezado,
+.item {
+    width: 100%;
+    grid-column: span 2;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#btnEliminar:hover,
+#aceptar:hover {
+    background-color: #E3170A;
+    color: #F8F9F9;
+}
+
+/**** VER PRODUCTO ****/
+.ver {
+    display: block;
+    margin: 0 auto;
+}
+
+.ver .group,
+.groupF {
+    width: 80%;
+    margin: 0 auto;
+    border-color: #1E212B;
+}
+
+.ver label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ver p {
+    font-size: 20px;
+}
+
+.ver select {
+    width: 40%;
+    padding: 5px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.ver h2 {
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+
+.ver img {
+    height: 280px;
+    margin: 0;
+    padding: 0;
+}
+
+.ver p a {
+    text-decoration: none;
+    color: #1E212B;
+    font-weight: bold;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.ver p a:hover,
+p a:focus {
+    color: #FEA82F;
+    background-size: 100% 2px;
+}
+
+/**** MODIFICAR ****/
+
+.modificar {
+    display: none;
+}
+
+.modificar .group,
+.groupF {
+    width: 80%;
+    margin: 0 auto;
+    border-color: #1E212B;
+}
+
+.modificar .group label,
+.groupF label {
+    width: 100%;
+    margin: 8px 0 0px 0;
+    min-height: 25px;
+    padding: 2px 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.modificar .group input,
+textarea {
+    width: 100%;
+    margin: 8px 0 0px 0;
+    min-height: 25px;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid;
+    -webkit-transition: all 1.0s;
+    transition: ease-in 0.1s;
+}
+
+.modificar .group input:focus,
+textarea:focus {
+    -webkit-transform: box-shadow(1.1, 1.1);
+    transform: scale;
+    box-shadow: 3px 3px 3px #FEA82F;
+}
+
+.modificar .group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.modificar .group p {
+    width: 320px;
+    margin: 4px 3px;
+    min-height: 25px;
+    padding: 2px 10px;
+    border-radius: 5px;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    color: #AF1B3F;
+    text-align: left;
+    display: none;
+}
+
+.ver .group {
+    margin: 20px 0 50px 0;
+}
+.aviso-modal .btnForm {
+    display: inline;
+    width: 100px;
+    height: 40px;
+    background-color: #1E212B;
+    color: #F8F9F9;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-transition: all 1.0s;
+    transition: ease-in 0.1s;
+}
+
+.aviso-modal .btnForm:hover {
+    background-color: #FEA82F;
+    color: #1E212B;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale;
+}
+
+
+.datos button{
+    width: 40%;
+    margin: 5% 20%;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #98CA3F;
+    color: #F2F2F2;
+    border-style: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    transition: transform .2s;
+    outline: 0 none;
+}
+
+.datos button:hover{
+    transform: scale(1.05);
+}
+
+#cerrar, #cancelar{
+    background-color: #FF331F;
+}
+
+#mostrar, #ocultar{
+    margin: 2% 0 0 73%;
+    padding: 0;
+    width: auto;
+    color: #191919;
+    background: none;
+    box-shadow: none;
+    position: absolute;
+}
+
+#mostrar{
+    display: block;
+}
+#ocultar{
+    display: none;
+}
+
+.inputcontra{    
+    display: flex;
+    width: 100%;
+    margin: 0;
+    border-style: none;
+    padding: 0;
+}

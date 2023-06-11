@@ -1,0 +1,97 @@
+.box-container {
+    display: block;
+    width: 95%;
+    margin: 0 auto 0 auto;
+    padding: 30px;
+    border-radius: 2px;
+    background-color: #F2F2F2;
+    box-shadow: 2px 2px 20px #000000;
+    position: relative;
+    z-index: 0;
+}
+
+.losmasvistos{
+    display: block;
+    width: 80%;
+    margin: 3% auto;
+}
+
+.losmasvistos h1{
+    text-align: center;
+    margin: 2% auto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.cursos {
+    display: flex;
+    width: 100%;
+    margin: auto 0;
+}
+
+.infocurso {
+    display: block;
+    margin: 0 10px;
+    width: 100%;
+    border: solid 0.5px;
+    border-color: #000000;
+    border-radius: 2%;
+    text-align: center;
+}
+
+.infocurso img {
+    width: 100%;
+    border-radius: 2%;    
+    height: 204.016px;
+}
+
+.infocurso h2 {
+    display: block;
+    font-weight: bold;
+    margin: 10px auto;
+    height: 80px;
+}
+
+.infocurso label {
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.infocurso button {
+    display: block;
+    width: 40%;
+    margin: 5% auto;
+    padding: 10px 0;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: #0791E6;
+    color: #F2F2F2;
+    border-style: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    transition: transform .2s;
+    outline: 0 none;
+}
+
+.infocurso button:hover {
+    transform: scale(1.05);
+}
+
+.paginacion {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.paginacion a {
+    display: inline-block;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 15px;
+}

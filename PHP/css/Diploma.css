@@ -1,0 +1,56 @@
+.box-container {
+    display: block;
+    width: 80%;
+    margin: 60px auto 0 auto;
+    padding: 30px;
+    border-radius: 2px;
+    background-color: #F2F2F2;
+    box-shadow: 2px 2px 20px #000000;
+    position: relative;
+    z-index: 0;
+}
+
+.box-container h1{
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.box-container p {
+    display: block;
+    width: 100%;
+    margin: 1% auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.info {
+    display: block;
+    width: 80%;
+    margin: 4% auto;
+    text-align: center;
+}
+
+.header div img{
+    display: block;
+    height: 100px;
+}
+#medallon{
+    margin: 0 auto 0 0;
+}
+#logo{
+    margin: 0 0 0 auto;
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    align-items:end;
+}
+.header div{
+    display: block;
+    width: 100%;
+}
