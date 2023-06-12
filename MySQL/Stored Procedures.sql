@@ -1,5 +1,51 @@
 use bdm;
 #------------------------------------------------------#
+DROP PROCEDURE IF EXISTS sp_calificacion;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_calificacion`(
+in	id_comentario			int,
+in	id_usuario_f			int,
+in	id_curso_f				int,
+in	comentario				varchar(300),
+in	calificacion			int,
+in	fecha_comentario		datetime,
+in	opcion					varchar(100)
+)
+SQL SECURITY INVOKER
+begin
+	if opcion =	'I' then
+		INSERT INTO comentario(id_usuario_f, id_curso_f, comentario, calificacion)
+		VALUES(id_usuario_f, id_curso_f, comentario, calificacion);
+		
+		select 1 as codigo,
+		concat('registro exitoso') as mensaje;
+	end if;
+    
+	/*if opcion = 'U' then    
+		update usuario set
+		contra = if(sp_contra <> '', sp_contra, contra),
+		imagen = if(sp_imagen <> '', sp_imagen, imagen),
+		nombre = if(sp_nombre <> '', sp_nombre, nombre),
+		apellido_p = if(sp_apellido_p <> '', sp_apellido_p, apellido_p),
+		apellido_m = if(sp_apellido_m <> '', sp_apellido_m, apellido_m),
+		fch_nacimiento = if(sp_fch_nacimiento <> '', sp_fch_nacimiento, fch_nacimiento),
+		genero = if(sp_genero <> '', sp_genero, genero)
+		where id_usuario = (select id_usuario from usuario where email = sp_email);
+		
+		select 1 as codigo,
+		concat('Usuario modificado exitosamente') as mensaje;
+    end if;
+    
+     if opcion = 'D' then 
+		update usuario set baja_logica = 1 
+        WHERE id_usuario = (select id_usuario from usuario where email = sp_email);
+        
+        select 1 as codigo, 
+        'Baja exitosa' as mensaje;
+    end if;*/
+end$$
+DELIMITER ;
+#------------------------------------------------------#
 DROP PROCEDURE IF EXISTS sp_usuario;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario`(

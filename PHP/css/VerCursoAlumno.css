@@ -1,15 +1,65 @@
-.curso,
-.nivel {
+.caja {
+    display: flex;
+}
+
+.box-container {
     display: block;
-    width: 40%;
-    margin: 3% auto 0 auto;
+    width: 100%;
+}
+
+.curso,
+.nivel,
+.calificacion,
+.comentarios {
+    display: block;
+    width: 90%;
+    margin: 2% auto;
+    padding: 2%;
+    width: 90%;
+    margin: 3% auto;
     padding: 30px;
     border-radius: 2px;
     background-color: #F2F2F2;
     box-shadow: 2px 2px 20px #000000;
     position: relative;
     z-index: 0;
-    text-align: center;
+}
+
+.calificacion label {
+    display: block;
+    margin: 2% auto;
+}
+
+.comentarios div{
+    display: block;
+    margin: 3% auto;
+}
+
+.comentario textarea {
+    display: block;
+    width: 100%;
+    margin: 2% auto;
+}
+
+#btnGuardar {
+    display: block;
+    width: 30%;
+    margin: 0 0 0 auto;
+    padding: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #98CA3F;
+    color: #F2F2F2;
+    border-style: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    transition: transform .2s;
+    outline: 0 none;
+}
+
+#btnAgregarComentario:hover {
+    transform: scale(1.05);
 }
 
 .nivel button {
@@ -38,7 +88,7 @@ video {
     transform: scale(1.05);
 }
 
-.infocurso img {
+.curso img {
     display: block;
     width: 100%;
 }
@@ -145,4 +195,26 @@ button#btn-cancelar {
 .botones button:hover {
     color: #1E212B;
     transform: scale(1.05);
+}
+
+.rating {
+    text-align: center;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    font-size: 30px;
+    cursor: pointer;
+}
+.rating > span:before {
+    content: "\2606";
+    position: absolute;
+}
+.rating > span.checked:before {
+    content: "\2605";
+}
+
+.rating a {
+    text-decoration: none;
 }

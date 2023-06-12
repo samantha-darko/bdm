@@ -27,9 +27,44 @@ include_once "../php/VerCursoAlumno.php";
     <div id="ventana-modal" class="modal">
 
     </div>
+    <div id="confirmacion" class="modal">
+        <div class="modal-contenido">
+            <h2>Finalizar Curso</h2>
+            <p>¿Estás seguro de que deseas marcar el curso como finalizado?</p>
+            <div class="botones">
+                <button id="btn-confirmar">Confirmar</button>
+                <button id="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
-    <div class="box-container" id="box-container">
-        <?php echo $items; ?>
+    <div class="caja">
+        <div class="box-container" id="box-container">
+            <?php echo $items; ?>
+        </div>
+
+        <div class="box-container" id="box-container">
+            <div class="calificacion">
+                <label>Califica el curso:</label>
+                <div class="rating">
+                    <span class="star" onclick="rateCourse(1)">&#9734;</span>
+                    <span class="star" onclick="rateCourse(2)">&#9734;</span>
+                    <span class="star" onclick="rateCourse(3)">&#9734;</span>
+                    <span class="star" onclick="rateCourse(4)">&#9734;</span>
+                    <span class="star" onclick="rateCourse(5)">&#9734;</span>
+                </div>
+                <div class="comentario">
+                    <label>Agrega un comentario:</label>
+                    <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
+                    <button id="btnGuardar">Guardar</button>
+                </div>
+            </div>
+            <div class="comentarios">
+                <div>
+                    <label>Otros comentarios:</label>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="box-footer">

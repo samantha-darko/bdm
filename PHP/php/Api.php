@@ -2,6 +2,36 @@
 include_once("conexion.php");
 include_once("Clases.php");
 
+
+class ApiComentario
+{
+    public function Calificacion($rating, $usuario, $curso)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_inscribir_curso(?, 0, 0, 0, 1, 'finalizarcursoinscrito');");
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(1, $rating);
+            $stmt->bindValue(2, $usuario);
+            $stmt->bindValue(3, $curso);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row['id_curso_inscrito'], $row['codigo'], $row['mensaje']);
+            } else
+                $msj = false;
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+            return $msj;
+        }
+    }
+}
 class ApiAlumno
 {
     public function Diploma($idcursoinscrito)

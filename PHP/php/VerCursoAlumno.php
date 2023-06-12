@@ -56,7 +56,7 @@ try {
 
         // Cerrar el bloque del nivel si se ha mostrado un nuevo título
         if ($i + 1 === count($ListaRecursos) || $ListaRecursos[$i + 1]['nivel_titulo'] !== $nivelTitulo) {
-            $items .= '<button onclick="finalizar('. $ListaRecursos[$i]['nivel_id'] .')">Finalizar Nivel</button>';
+            //$items .= '<button onclick="finalizar('. $ListaRecursos[$i]['nivel_id'] .')">Finalizar Nivel</button>';
             $items .= '</div>';
         }
     }

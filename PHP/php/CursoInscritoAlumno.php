@@ -25,8 +25,8 @@ try {
             $ListaRecursos = $api->RecursosdelCurso($idcurso);
             for ($j = 0; $j < count($ListaRecursos); $j++) {
                 $items .= '<div class="infonivel">';
-                $items .= '<p>Contenido: ' . $ListaRecursos[$j]['recurso'] . '</p>';
-                $items .= '<p>Archivo: <a href="data:' . $ListaRecursos[$j]['tipo'] . ';base64,' . base64_encode($ListaRecursos[$j]['contenido']) . '" download="' . $ListaRecursos[$j]['recurso'] . '">Descargar</a></p>';
+                $items .= '<p>Contenido: ' . $ListaRecursos[$j]['recurso_nombre'] . '</p>';
+                $items .= '<p>Archivo: <a href="data:' . $ListaRecursos[$j]['recurso_tipo'] . ';base64,' . base64_encode($ListaRecursos[$j]['contenido']) . '" download="' . $ListaRecursos[$j]['recurso_nombre'] . '">Descargar</a></p>';
                 $items .= '</div>';
             }
             $items .= '</div>';
@@ -49,3 +49,5 @@ try {
     $msj = "Error en servidor: " . $e->getMessage();
     echo json_encode($msj);
 }
+
+?>

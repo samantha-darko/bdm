@@ -14,3 +14,5 @@ try {
     $msj = "Error en servidor: " . $e->getMessage();
     echo json_encode($msj);
 }
+
+?>
