@@ -39,21 +39,21 @@ include_once '../php/ObtenerNiveles.php'; ?>
         <form id="agregar" class="agregar" enctype="multipart/form-data">
             <div class="division">
                 <label>Título</label>
-                <input id="titulo" name="titulo" type="text" onkeypress="return Letters(event);" tabindex="0">
+                <input id="titulo" name="titulo" type="text" onkeypress="return Letters(event);" tabindex="1">
                 <p id="cortotitulo">* El t&iacute;tulo es muy corto.</p>
                 <p id="vaciotitulo">* No puede dejar el t&iacute;tulo vac&iacute;o.</p>
             </div>
 
             <div class="division">
                 <label>Resumen</label>
-                <textarea id="resumen" name="resumen" onkeypress="return Letters(event);" tabindex="1"></textarea>
+                <textarea id="resumen" name="resumen" onkeypress="return Letters(event);" tabindex="2"></textarea>
                 <p id="cortoresumen">* La descripci&oacute;n es muy corta.</p>
                 <p id="vacioresumen">* No puede dejar la descripci&oacute;n vac&iacute;a.</p>
             </div>
 
             <div class="division">
                 <label for="">Contenido del nivel:</label>
-                <input type="file" id="archivos" name="archivos[]" multiple tabindex="2">
+                <input type="file" id="archivos" name="archivos[]" multiple tabindex="3">
                 <p id="vacioarchivos">* Debe seleccionar al menos 1 archivo a subir.</p>
             </div>
 

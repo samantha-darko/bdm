@@ -58,13 +58,14 @@ body {
 }
 
 #btn-search {
+    margin: 0 0 0 5px;
     height: 40px;
     font-weight: bold;
     border-radius: 5px;
     padding: 0 10px;
     border: none;
     color: #1E212B;
-    background-color: transparent;
+    background-color: #F2F2F2;
 }
 
 #btn-search:hover {

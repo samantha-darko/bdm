@@ -344,9 +344,7 @@ begin
 	if opcion =	'I' then
 		INSERT INTO curso(id_usuario_f, titulo, descripcion, imagen, costo)
 		VALUES(sp_id_usuario_f, sp_titulo, sp_descripcion, sp_imagen, sp_costo);
-		
-		select 1 as codigo,
-		concat('registro exitoso') as mensaje;
+        SELECT LAST_INSERT_ID() as idcurso, 1 as codigo, concat('registro exitoso') as mensaje;
 	end if;
     
 	if opcion = 'U' then    

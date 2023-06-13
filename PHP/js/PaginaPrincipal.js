@@ -16,6 +16,11 @@ function VerificarSesion() {
 document.addEventListener("DOMContentLoaded", VerificarSesion)
 
 $(document).ready(function () {
+    document.querySelector('#buscador').addEventListener('submit', function (e) {
+        e.preventDefault();
+    })
+
+
     document.querySelector('#salir').addEventListener('click', function (e) {
         e.preventDefault();
         if ('idusuario' in sessionStorage) {

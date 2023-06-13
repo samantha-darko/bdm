@@ -12,13 +12,22 @@ try {
     $descripcion = $_POST["descripcion"];
     $costo = $_POST["costocurso"];
     $foto = fopen($_FILES['image']['tmp_name'], 'rb');
-
+    $categorias = $_POST['categorias'];
     if ($costo == "")
         $costo = "0";
 
     $datos = new Curso(0, $iduser, $titulo, $descripcion, 0, $foto, $costo);
-    $msj = $api->Agregar($datos);
-    echo json_encode($msj);
+    $idcurso = $api->Agregar($datos);
+
+    if ($idcurso[0] > 0) {
+        $categoria = new ApiCategoriaCurso();
+        for ($i = 0; $i < count($categorias); $i++) {
+            $idcategoria = $categorias[$i];
+            $categoria->Agregar($idcurso[0],$idcategoria);
+        }
+    }
+
+    echo json_encode(true);
 } catch (PDOException $e) {
     $msj = "Error en servidor: " . $e->getMessage();
     echo json_encode($msj);

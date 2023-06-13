@@ -23,8 +23,8 @@ if (isset($_SESSION['acceso'])) {
             $menu .= '<li><a href="" id="salir">';
             $menu .= '<i class="fa fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a></li>';
             $menu .= '</ul></li></ul></nav>';
-            $menu .= '<div class="buscador"><input type="search" name="" id="nav-search" placeholder="Buscador...">';
-            $menu .= '<button id="btn-search"><i class="fa fa-solid fa-magnifying-glass"></i></button></div></div>';
+            $menu .= '<form id="buscador" class="buscador"><input type="search" name="" id="nav-search" placeholder="Buscador...">';
+            $menu .= '<button type="submit" id="btn-search"><i class="fa fa-solid fa-magnifying-glass"></i></form></div></div>';
         }
 
         if($datos->rol === "maestro"){

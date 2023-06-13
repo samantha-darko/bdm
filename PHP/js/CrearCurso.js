@@ -18,12 +18,11 @@ let vaciocosto = document.querySelector("#vaciocosto");
 
 let tipo = document.querySelector("#tipo");
 
-
-let selecteds = [];
+//let selecteds = [];
 
 function Agregar(datos) {
     console.log(datos)
-    if (datos[0] === 1) {
+    if (datos) {
         document.getElementById("ventana-modal").style.display = "block"
         $(".modal").append("<div class='contenido-modal'> <a href='login.php'><img src='../multmedia/logo.png' titlle='Inicio'></a>" +
             "<div class='aviso-modal'> <p>Agregar Curso </p> <h2>Se ha agregado el curso de forma correcta.</h2> </div> </div>")
@@ -156,7 +155,7 @@ function VerificarSesion() {
 document.addEventListener("DOMContentLoaded", VerificarSesion)
 
 $(document).ready(function () {
-    let $lista = $('#lista');
+    /*let $lista = $('#lista');
     $lista.on('change', () => {
         selecteds = []
         // Buscamos los option seleccionados
@@ -170,7 +169,7 @@ $(document).ready(function () {
 
         //
         console.log(selecteds);
-    });
+    });*/
 
     if ('cantidadlvl' in sessionStorage) {
         sessionStorage.removeItem('cantidadlvl');
@@ -187,13 +186,18 @@ $(document).ready(function () {
             costoc = false;
         }
         if (titulo.value.length > 4 && descripcion.value.length > 9 && fotocurso.style.display != '' && costoc) {
+            formData = new FormData(this);
+            var categorias = $("#lista").val();
+            for (var i = 0; i < categorias.length; i++) {
+                formData.append('categorias[]', categorias[i]);
+            }
             $.ajax({
                 type: "POST",
                 url: "../php/AgregarCurso.php",
                 cache: false,
                 contentType: false,
                 processData: false,
-                data: new FormData(this),
+                data: formData,
                 success: function (resultado) {
                     let res = JSON.parse(resultado);
                     Agregar(res);

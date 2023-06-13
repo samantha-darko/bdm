@@ -2,6 +2,36 @@
 include_once("conexion.php");
 include_once("Clases.php");
 
+class ApiCategoriaCurso
+{
+    public function Agregar($curso, $categoria)
+    {
+        try {
+            $msj = false;
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_mmcursocategoria(0, ?, ?, 'I');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $curso);
+            $stmt->bindValue(2, $categoria);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row['codigo'], $row['mensaje']);
+            }
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+}
+
 class ApiCategoria
 {
     public function Agregar($datos)
@@ -697,7 +727,7 @@ class ApiCurso
 
             if ($stmt->rowCount() > 0) {
                 $row = $stmt->fetch();
-                $msj = array($row['codigo'], $row['mensaje']);
+                $msj = array($row['idcurso'], $row['codigo'], $row['mensaje']);
             }
             return $msj;
         } catch (PDOException $e) {
