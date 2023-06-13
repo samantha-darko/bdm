@@ -48,7 +48,8 @@
 .division input,
 .division textarea,
 .division2 select,
-.division2 input {
+.division2 input,
+#lista {
     width: 100%;
     font-size: 16px;
     padding: 10px 0 10px 15px;
@@ -61,7 +62,8 @@
 }
 
 .division input:focus,
-.division2 select:focus {
+.division2 select:focus,
+#lista:focus {
     border-color: blue;
     box-shadow: 0 1px 1px rgba(12, 22, 51, 0.075)inset, 0 0 8px rgba(7, 145, 230, 0.6);
     border-width: 1px;

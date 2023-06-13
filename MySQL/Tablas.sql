@@ -4,8 +4,8 @@ use bdm;
 #------------------------TABLA ADMINISTRADOR-------------------------#
 drop table if exists administrador;
 create table administrador(
-	id_administrador		int				not null auto_increment,
-    usuario					varchar(40)		not null,
+	id_administrador		int				not null auto_increment comment 'ID del Administrador',
+    usuario					varchar(40)		not null comment 'Nombre de Usuario del Administrador',
     contra					varchar(40)		not null comment 'descripción de cada columna',
     
     primary key(id_administrador)
@@ -14,33 +14,33 @@ create table administrador(
 #----------------------------TABLA USUARIO----------------------------#
 drop table if exists usuario;
 create table usuario(
-	id_usuario				int 			not null auto_increment,
-	email 					varchar(250) 	not null unique,
-	contra 					varchar(250) 	not null collate utf8_spanish_ci,
-	rol 					varchar(50) 	not null,
-	imagen 					longblob		not null,
-	nombre 					varchar(200) 	not null,
-	apellido_p 				varchar(200) 	not null,
-	apellido_m 				varchar(200) 	not null,
-	fch_nacimiento 			date 			not null,
-	genero 					varchar(25) 	not null,
-    errores					int				default 0 not null,
-    baja_logica				bit				default 0 not null,
-	fch_ingreso 			date 			default now() not null,
+	id_usuario				int 			not null auto_increment comment 'ID del Usuario',
+	email 					varchar(250) 	not null unique comment 'Correo del Usuario',
+	contra 					varchar(250) 	not null collate utf8_spanish_ci comment 'Contraseña del Usuario',
+	rol 					varchar(50) 	not null comment 'Rol de Usuario (Maestro/Alumno)',
+	imagen 					longblob		not null comment 'Foto de Perfil del Usuario',
+	nombre 					varchar(200) 	not null comment 'Nombre del Usuario',
+	apellido_p 				varchar(200) 	not null comment 'Apellido Paterno del Usuario',
+	apellido_m 				varchar(200) 	not null comment 'Apellido Materno del Usuario',
+	fch_nacimiento 			date 			not null comment 'Fecha de Nacimiento del Usuario',
+	genero 					varchar(25) 	not null comment 'Genero del Usuario (Hombre/Mujer)',
+    errores					int				default 0 not null comment 'Intentos fallidos de iniciar sesion',
+    baja_logica				bit				default 0 not null comment 'Cuenta eliminada',
+	fch_ingreso 			date 			default now() not null comment 'Ultima fecha inicio de sesion',
     
 	primary key(id_usuario)
 )engine=InnoDB auto_increment=261296 collate=utf8_unicode_ci;
-
+call sp_usuario('administrador@jaiko.com','Admin.123','admin','','Administrador','Administrador','Administrador',now(),'hombre','I');
 
 #------------------------TABLA CURSO INSCRIOTO-----------------------#
 drop table if exists curso_inscrito;
 create table curso_inscrito(
-	id_curso_inscrito		int				not null auto_increment,
-    id_curso_f				int				not null,
-    id_usuario_f			int				not null,
-    nivel_actual			int				not null,
-    finalizado				bit				not null,
-    fecha_inscripcion		DATETIME		default now() not null,
+	id_curso_inscrito		int				not null auto_increment comment 'ID del Curso Inscrito',
+    id_curso_f				int				not null comment 'ID del Curso',
+    id_usuario_f			int				not null comment 'ID del Alumno',
+    nivel_actual			int				not null comment 'ID del Nivel',
+    finalizado				bit				not null comment 'Finalizacion del curso si/no',
+    fecha_inscripcion		DATETIME		default now() not null comment 'Fecha de Inscripcion al curso',
     
     primary key(id_curso_inscrito)
 )engine=InnoDB auto_increment=261296;
@@ -51,10 +51,9 @@ create table curso_inscrito(
 #----------------------------TABLA DIPLOMA-----------------------------#
 drop table if exists diploma;
 create table diploma(
-	id_diploma				int				not null auto_increment,
-    id_curso_inscrito_f		int				not null,
-    imgen_diploma			longblob		not null,
-    fecha_generado			date			default now() not null,
+	id_diploma				int				not null auto_increment comment 'ID del diploma',
+    id_curso_inscrito_f		int				not null comment 'ID del Curso Inscrito',
+    fecha_generado			date			default now() not null comment 'Fecha en que se genero el diploma',
     
     primary key(id_diploma)
 )engine=InnoDB auto_increment=261296;
@@ -63,12 +62,12 @@ create table diploma(
 #----------------------------TABLA PAGO CURSO----------------------------#
 drop table if exists pago_curso;
 create table pago_curso(
-	id_pago_curso			int				not null auto_increment,
-    id_curso_inscrito_f		int				default 0,
-    total					bit				not null,
-    forma_pago				varchar(30)		not null,
-    cantidad_pago			decimal(15, 2)	not null,
-    nivel					int				default 0,
+	id_pago_curso			int				not null auto_increment comment 'ID del Pago',
+    id_curso_inscrito_f		int				default 0 comment 'ID del Curso Inscrito',
+    total					bit				not null comment 'Total del Monto a Pagar',
+    forma_pago				varchar(30)		not null comment 'Metodo de Pago',
+    cantidad_pago			decimal(15, 2)	not null comment 'Cantidad Pagada',
+    nivel					int				default 0 comment 'Nivel Pagado',
     
     primary key(id_pago_curso)
 )engine=InnoDB auto_increment=261296;
@@ -76,11 +75,11 @@ create table pago_curso(
 #----------------------------TABLA MENSAJES----------------------------#
 drop table if exists mensajes;
 create table mensajes(
-	id_mensajes				int				not null auto_increment,
-    id_enviado_f			int				not null,
-    id_recivido_f			int				not null,
-    mensaje					varchar(500)	not null,
-    fecha_envio				datetime		default now() not null,
+	id_mensajes				int				not null auto_increment comment 'ID del Mensaje',
+    id_enviado_f			int				not null comment 'ID del Usuario que envia el mensaje',
+    id_recivido_f			int				not null comment 'ID del Usuario que recibe el mensaje',
+    mensaje					varchar(500)	not null comment 'Mensaje',
+    fecha_envio				datetime		default now() not null comment 'Fecha de envio del mensaje',
     
     primary key(id_mensajes)
 )engine=InnoDB auto_increment=261296;
@@ -88,10 +87,10 @@ create table mensajes(
 #----------------------------TABLA LOG----------------------------#
 drop table if exists log;
 create table log(
-	id_log					int				not null auto_increment,
-    id_usuario_f			int				not null,
-    cambio					varchar(200)	not null,
-    fecha_cambio			datetime		default now(),
+	id_log					int				not null auto_increment comment 'ID del Log',
+    id_usuario_f			int				not null comment 'ID del Usuario que genero el log',
+    cambio					varchar(200)	not null comment 'Descripcion del cambio',
+    fecha_cambio			datetime		default now() comment 'Fecha del cambio',
     
     primary key(id_log)
 )engine=InnoDB auto_increment=261296;
@@ -99,12 +98,12 @@ create table log(
 #----------------------------TABLA CATEGORIA----------------------------#
 drop table if exists categoria;
 create table categoria(
-	id_categoria			int				not null auto_increment,
-    id_usuario_f			int				not null,
-    titulo					varchar(64)		not null,
-    descripcion				varchar(500)	not null,
-    fecha_creacion			date			default(now()) not null,
-    baja_logica				bit				default 0 not null,
+	id_categoria			int				not null auto_increment comment 'ID de la Categoria',
+    id_usuario_f			int				not null comment 'ID del Usuario',
+    titulo					varchar(64)		not null comment 'Nombre de la Categoria',
+    descripcion				varchar(500)	not null comment 'Descripcion de la Categoria',
+    fecha_creacion			date			default(now()) not null comment 'Fecha de Creacion de la Categoria',
+    baja_logica				bit				default 0 not null comment 'Eliminacion de la Categoria',
     
     primary key(id_categoria)
 )engine=InnoDB auto_increment=261296;
@@ -112,14 +111,13 @@ create table categoria(
 #----------------------------TABLA CURSO----------------------------#
 drop table if exists curso;
 create table curso(
-	id_curso				int				not null auto_increment,
-    id_usuario_f			int				not null,
-	titulo					varchar(64)		not null,
-    descripcion				varchar(500)	not null,
-    #promedio consulta
-	activo					bit				default 1 not null,
-    imagen					longblob		not null,
-    costo					decimal(15, 2)	not null,
+	id_curso				int				not null auto_increment comment 'ID del Curso',
+    id_usuario_f			int				not null comment 'ID del Maestro que lo creo',
+	titulo					varchar(64)		not null comment 'Titulo del Curso',
+    descripcion				varchar(500)	not null comment 'Descripcion del Curso',
+	activo					bit				default 1 not null comment 'Curso Activo',
+    imagen					longblob		not null comment 'Imagen del Curso',
+    costo					decimal(15, 2)	not null comment 'Costo del Curso',
     
     primary key(id_curso)
 )engine=InnoDB auto_increment=261296;
@@ -127,9 +125,9 @@ create table curso(
 #----------------------TABLA MM_CURSO_CATEGORIA---------------------#
 drop table if exists mm_curso_categoria;
 create table mm_curso_categoria(
-	id_mm_curso_categoria	int				not null auto_increment,
-    id_curso_f				int				not null,
-    id_categoria_f			int				not null,
+	id_mm_curso_categoria	int				not null auto_increment comment 'ID del Curso-Categoria',
+    id_curso_f				int				not null comment 'ID del Curso',
+    id_categoria_f			int				not null comment 'ID de la Categoria',
     
     primary key(id_mm_curso_categoria)
 );
@@ -137,14 +135,14 @@ create table mm_curso_categoria(
 #----------------------------TABLA NIVEL----------------------------#
 drop table if exists nivel;
 create table nivel(
-	id_nivel				int				not null auto_increment,
-    id_curso_f				int				not null,
-    titulo					varchar(64)		not null,
-    resumen					varchar(300)	not null,
-    contenido				varchar(2000)	not null,
-	costo					decimal(15, 2)	not null,
-    video					longblob		not null,
-    baja_logica				bit				default 0 not null,
+	id_nivel				int				not null auto_increment comment 'ID del Nivel',
+    id_curso_f				int				not null comment 'ID del Curso al que pertenece el nivel',
+    titulo					varchar(64)		not null comment 'Titulo del Nivel',
+    resumen					varchar(300)	not null comment 'Descripcion del Nivel',
+    contenido				varchar(2000)	not null comment 'Contenido del Nivel',
+	costo					decimal(15, 2)	not null comment 'Costo del Nivel',
+    video					longblob		not null comment 'Video del Nivel',
+    baja_logica				bit				default 0 not null comment 'Eliminacion del Video',
     
     primary key(id_nivel)
 )engine=InnoDB auto_increment=261296;
@@ -152,11 +150,11 @@ create table nivel(
 #----------------------------TABLA RECURSOS----------------------------#
 drop table if exists recursos;
 create table recursos(
-	id_recursos				int				not null auto_increment,
-    id_nivel_f				int				not null,
-    nombre					varchar(128)	not null,
-    tipo					varchar(64)		not null,
-    contenido				longblob		not null,
+	id_recursos				int				not null auto_increment comment 'ID del Recurso',
+    id_nivel_f				int				not null comment 'ID del Nivel al que pertenece el recurso',
+    nombre					varchar(128)	not null comment 'Nombre del Recurso',
+    tipo					varchar(64)		not null comment 'Tipo de Recurso',
+    contenido				longblob		not null comment 'Recurso (Video/Imagen/PDF/etc)',
     
 	primary key(id_recursos)
 )engine=InnoDB auto_increment=261296;
@@ -164,12 +162,12 @@ create table recursos(
 #----------------------------TABLA COMENTARIO----------------------------#
 drop table if exists comentario;
 create table comentario(
-	id_comentario			int				not null auto_increment,
-    id_usuario_f			int				not null,
-    id_curso_f				int				not null,
-    comentario				varchar(300)	not null,
-    calificacion			int				not null,
-    fecha_comentario		datetime		default now(),
+	id_comentario			int				not null auto_increment comment 'ID del Comentario',
+    id_usuario_f			int				not null comment 'ID del Usuario que hizo el comentario',
+    id_curso_f				int				not null comment 'ID del Curso en donde se hizo el comentario',
+    comentario				varchar(300)	not null comment 'Comentario',
+    calificacion			int				not null comment 'Calificacion del Curso',
+    fecha_comentario		datetime		default now() comment 'Fecha del Comentario',
 
 	primary key(id_comentario)
 )engine=InnoDB auto_increment=261296;

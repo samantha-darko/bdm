@@ -20,8 +20,8 @@ AFTER UPDATE ON curso_inscrito
 FOR EACH ROW
 BEGIN
     IF NEW.finalizado = 1 THEN
-        INSERT INTO diploma (id_curso_inscrito_f, imgen_diploma, fecha_generado)
-        VALUES (NEW.id_curso_inscrito, 'imagen_del_diploma', CURDATE());
+        INSERT INTO diploma (id_curso_inscrito_f, fecha_generado)
+        VALUES (NEW.id_curso_inscrito, CURDATE());
     END IF;
 END $$
 DELIMITER ;

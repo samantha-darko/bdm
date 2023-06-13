@@ -1,5 +1,43 @@
 use bdm;
 #------------------------------------------------------#
+DROP PROCEDURE IF EXISTS sp_mmcursocategoria;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mmcursocategoria`(
+in	spid_mm_curso_categoria		int,
+in	spid_curso_f 				int,
+in	spid_categoria_f 			varchar(64),
+in 	opcion						varchar(20)
+)
+SQL SECURITY INVOKER
+begin
+	if opcion =	'I' then
+		INSERT INTO mm_curso_categoria(id_curso_f, id_categoria_f)
+		VALUES(spid_curso_f, spid_categoria_f);
+		
+		select 1 as codigo,
+		concat('registro exitoso') as mensaje;
+	end if;
+    
+	if opcion = 'U' then    
+		update mm_curso_categoria set
+		id_curso_f = if(spid_curso_f <> '', spid_curso_f, id_curso_f),
+		id_categoria_f = if(spid_categoria_f <> '', spid_categoria_f, id_categoria_f)
+		where id_mm_curso_categoria = spid_mm_curso_categoria;
+		
+		select 1 as codigo,
+		concat('registro modificado exitosamente') as mensaje;
+    end if;
+    
+     if opcion = 'D' then 
+		DELETE FROM mm_curso_categoria
+		WHERE id_mm_curso_categoria = spid_mm_curso_categoria;
+
+        select 1 as codigo, 
+        'Baja exitosa' as mensaje;
+    end if;
+end$$
+DELIMITER ;
+#------------------------------------------------------#
 DROP PROCEDURE IF EXISTS sp_calificacion;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_calificacion`(
@@ -244,17 +282,14 @@ in	sp_id_categoria					int,
 in	sp_id_usuario_f 				int,
 in	sp_titulo 						varchar(64),
 in	sp_descripcion 					varchar(500),
-in 	opcion						varchar(2)
+in 	opcion						varchar(20)
 )
 SQL SECURITY INVOKER
 begin
-	DECLARE EXIT HANDLER FOR 1146 
-		SELECT 1146 as codigo,
-        'Tabla no encontrada' as mensaje;
-        
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
-		SELECT 100 as codigo,
-        'Error en base de datos' as mensaje; 
+	if opcion = 'lista' then
+		SELECT id_categoria, titulo
+        FROM categoria WHERE baja_logica = 0;
+    end if;
 
 	if opcion =	'I' then
 		INSERT INTO categoria(id_usuario_f, titulo, descripcion)
@@ -267,19 +302,17 @@ begin
 	if opcion = 'U' then
     
     update categoria set
-    titulo = if(sp_titulo <> '', sp_titulo, titulo),
-    descripcion = if(sp_descripcion <> '', sp_descripcion, descripcion)
-    where id_categoria = sp_id_categoria
-    ;
-    
-     select 1 as codigo,
-    concat('Categoria modificado exitosamente') as mensaje;
+		titulo = if(sp_titulo <> '', sp_titulo, titulo),
+		descripcion = if(sp_descripcion <> '', sp_descripcion, descripcion)
+		where id_categoria = sp_id_categoria;
+		
+		select 1 as codigo,
+		concat('Categoria modificado exitosamente') as mensaje;
     end if;
     
      if opcion = 'D' then 
 		update categoria set baja_logica = 1 
-        where id_categoria = sp_id_categoria
-        ;
+        where id_categoria = sp_id_categoria;
         select 1 as codigo, 
         'Baja exitosa' as mensaje;
     end if;
@@ -519,12 +552,12 @@ begin
     
     if opcion = 'TotalCategorias' then
 		SELECT id_categoria, id_usuario_f, titulo, descripcion, fecha_creacion, baja_logica from categoria
-        where id_usuario_f = sp_id;
+        where id_usuario_f = sp_id AND baja_logica = 0;
     end if;
     
     if opcion = 'ListadoCategorias' then
-		SELECT id_categoria, id_usuario_f, titulo, descripcion, fecha_creacion, baja_logica from categoria
-        where id_usuario_f = sp_id
+		SELECT id_categoria, id_usuario_f, titulo, descripcion, fecha_creacion from categoria
+        WHERE id_usuario_f = sp_id AND baja_logica = 0
         LIMIT sp_inicio, sp_cantidad;
     end if;
     

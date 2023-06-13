@@ -49,6 +49,9 @@ include_once "../php/VerificarSesion.php"
                 <p id="cortodescripcion">* La descripci&oacute;n es muy corta.</p>
                 <p id="vaciodescripcion">* No puede dejar la descripci&oacute;n vac&iacute;a.</p>
             </div>
+            <div class="division">
+                <select multiple name="lista" id="lista"></select>
+            </div>
             <div class="division2">
                 <div>
                     <label for="rol">Selecciona un tipo de cobro:</label>

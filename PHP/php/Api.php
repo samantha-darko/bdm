@@ -2,7 +2,167 @@
 include_once("conexion.php");
 include_once("Clases.php");
 
+class ApiCategoria
+{
+    public function Agregar($datos)
+    {
+        try {
+            $msj = false;
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_categoria(0, ?, ?, ?, 'I');");
+            $stmt = $conn->prepare($sql);
 
+            $stmt->bindValue(1, $datos->id_usuario_f);
+            $stmt->bindValue(2, $datos->titulo);
+            $stmt->bindValue(3, $datos->descripcion);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row['codigo'], $row['mensaje']);
+            }
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+
+    public function Editar($id, $titulo, $descripcion)
+    {
+        try {
+            $msj = false;
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_categoria(?, 0, ?, ?, 'U');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $id);
+            $stmt->bindValue(2, $titulo);
+            $stmt->bindValue(3, $descripcion);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row['codigo'], $row['mensaje']);
+            }
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+
+    public function Eliminar($id)
+    {
+        try {
+            $msj = false;
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_categoria(?, 0, 0, 0, 'D');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row['codigo'], $row['mensaje']);
+            }
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+
+    function ListaCategorias()
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = "call sp_categoria(0, 0, 0, 0, 'lista');";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            $result = array();
+            while ($row = $stmt->fetch()) {
+                $result[] = array(
+                    "id_categoria" => $row['id_categoria'],
+                    "titulo" => $row['titulo']
+                );
+            }
+
+            if (!empty($result)) {
+                return $result;
+            }
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+
+    function Listado($id, $inicio, $registros)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_consulta(?, ?, ?, 'ListadoCategorias');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $id);
+            $stmt->bindValue(2, $inicio);
+            $stmt->bindValue(3, $registros);
+
+            $stmt->execute();
+
+            return $stmt;
+        } catch (PDOException $e) {
+            $stmt = "Error en servidor: " . $e->getMessage();
+            return $stmt;
+        }
+    }
+    public function Total($id)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_consulta(?, '', '', 'TotalCategorias');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $id);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll((PDO::FETCH_ASSOC));
+
+            return $result;
+        } catch (PDOException $e) {
+            $result = "Error en servidor: " . $e->getMessage();
+            return $result;
+        }
+    }
+}
 class ApiComentario
 {
     public function Calificacion($rating, $usuario, $curso)
@@ -229,7 +389,6 @@ class ApiAlumno
             $msj = "Error en servidor: " . $e->getMessage();
         }
     }
-
 }
 class ApiMaestro
 {
@@ -512,7 +671,6 @@ class ApiCliente
 
         return $msj;
     }
-
 }
 
 class ApiCurso
@@ -933,7 +1091,3 @@ class ApiNivel
         }
     }
 }
-
-
-
-?>

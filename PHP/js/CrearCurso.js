@@ -18,6 +18,9 @@ let vaciocosto = document.querySelector("#vaciocosto");
 
 let tipo = document.querySelector("#tipo");
 
+
+let selecteds = [];
+
 function Agregar(datos) {
     console.log(datos)
     if (datos[0] === 1) {
@@ -128,13 +131,47 @@ function VerificarSesion() {
     if (!("idusuario" in sessionStorage)) {
         window.location.href = "../paginas/IniciarSesion.php"
     }
-    document.querySelector("#costocurso").value = "0"
-    document.querySelector("#preciocurso").style.display = "block"
+    else {
+        document.querySelector("#costocurso").value = "0"
+        document.querySelector("#preciocurso").style.display = "block"
+        var selectElement = document.getElementById("lista");
+        $.ajax({
+            url: "../php/ListaCategorias.php",
+            success: function (data) {
+                var lista = JSON.parse(data)
+                for (var i = 0; i < lista.length; i++) {
+                    var opcion = lista[i];
+                    var optionElement = document.createElement("option");
+                    optionElement.value = opcion['id_categoria'];
+                    optionElement.text = opcion['titulo'];
+
+                    selectElement.appendChild(optionElement);
+                }
+
+            }
+        });
+    }
 }
 
 document.addEventListener("DOMContentLoaded", VerificarSesion)
 
 $(document).ready(function () {
+    let $lista = $('#lista');
+    $lista.on('change', () => {
+        selecteds = []
+        // Buscamos los option seleccionados
+        $lista.children(':selected').each((idx, el) => {
+            // Obtenemos los atributos que necesitamos
+            selecteds.push({
+                id: el.value,
+                value: el.text
+            });
+        });
+
+        //
+        console.log(selecteds);
+    });
+
     if ('cantidadlvl' in sessionStorage) {
         sessionStorage.removeItem('cantidadlvl');
     }
