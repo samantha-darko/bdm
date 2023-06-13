@@ -30,7 +30,6 @@ create table usuario(
     
 	primary key(id_usuario)
 )engine=InnoDB auto_increment=261296 collate=utf8_unicode_ci;
-call sp_usuario('administrador@jaiko.com','Admin.123','admin','','Administrador','Administrador','Administrador',now(),'hombre','I');
 
 #------------------------TABLA CURSO INSCRIOTO-----------------------#
 drop table if exists curso_inscrito;

@@ -27,7 +27,7 @@ function Paginar()
             $items .= '<h2>' . $dato['titulo'] . '</h2>';
             $items .= '<label>' . $dato['descripcion'] . '</label>';            
             $items .= '<div class="botones">';
-            $items .= '<button id="editar" onclick="editar(' . $dato['id_categoria'] . ')">Editar</button>';
+            //$items .= '<button id="editar" onclick="editar(' . $dato['id_categoria'] . ')">Editar</button>';
             $items .= '<button id="eliminar" onclick="eliminar(' . $dato['id_categoria'] . ')">Eliminar</button>';
             $items .= '</div></div>';
         }

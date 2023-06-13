@@ -59,11 +59,11 @@ include_once "../php/Categorias.php";
     <div class="box-container">
         <div class="desbloquear">
             <h2>Desbloquear Usuario</h2>
-            <form id="crearcategoria">
+            <form id="desbloquear">
                 <label>Ingrese el correo del usuario: </label>
                 <div>
                     <input id="correo" name="correo" type="text" tabindex="0">
-                    <button id="buscar" type="button" tabindex="1">Buscar</button>
+                    <button id="buscar" type="submit" tabindex="1">Desbloquear</button>
                 </div>
             </form>
         </div>

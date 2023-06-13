@@ -110,6 +110,35 @@ $(document).ready(function () {
         }
     });
 
+    document.querySelector('#desbloquear').addEventListener('submit', function (e) {
+        e.preventDefault()
+        let correo = $("#correo").val()
+        $.ajax({
+            url: '../php/DesbloquearUsuario.php?correo=' + correo,
+            method: 'GET',
+            success: function (resultado) {
+                var res = JSON.parse(resultado)
+                if (res[0] === 'No se encontro al usuario, verifique que ingreso el correo como a continuacion: usuario@example.com') {
+                    document.querySelector("#ventana-modal").style.display = "block";
+                    $(".modal").append("<div class='contenido-modal'><i class='fa-sharp fa-solid fa-circle-xmark'></i>" +
+                        "<div class='aviso-modal'><p>Desbloquear usuario</p><h2>" + res + "</h2></div></div>");
+                    setTimeout(function () {
+                        $(".contenido-modal").remove();
+                        document.querySelector("#ventana-modal").style.display = "none";
+                    }, 4500)
+                } else if (res[0] === 'Usuario desbloqueado') {
+                    document.querySelector("#ventana-modal").style.display = "block";
+                    $(".modal").append("<div class='contenido-modal'><i class='fa-sharp fa-solid fa-circle-check'></i>" +
+                        "<div class='aviso-modal'><p>Desbloquear usuario</p><h2>" + res + "</h2></div></div>");
+                    setTimeout(function () {
+                        $(".contenido-modal").remove();
+                        document.querySelector("#ventana-modal").style.display = "none";
+                    }, 2500)
+                }
+            }
+        })
+    })
+
     document.querySelector('#salir').addEventListener('click', function (e) {
         e.preventDefault();
         if ('idusuario' in sessionStorage) {

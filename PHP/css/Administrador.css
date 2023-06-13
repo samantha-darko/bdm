@@ -192,8 +192,7 @@
 
 .desbloquear button{
     display: block;
-    width: 10%;
-    padding: 10px 0;
+    padding: 10px;
     margin: auto;
     font-size: 18px;
     border-radius: 5px;

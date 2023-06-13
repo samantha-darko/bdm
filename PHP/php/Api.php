@@ -2,6 +2,35 @@
 include_once("conexion.php");
 include_once("Clases.php");
 
+class ApiAdministrador
+{
+    public function Desbloquear($correo)
+    {
+        try {
+            $msj = false;
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_usuario(?,0,0,0,0,0,0,0,0,'desbloquear');");
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(1, $correo);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = array($row[0]);
+            }
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+        }
+    }
+}
+
 class ApiCategoriaCurso
 {
     public function Agregar($curso, $categoria)

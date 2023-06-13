@@ -43,14 +43,18 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_calificacion`(
 in	spid_comentario			int,
 in	spid_usuario_f			int,
-in	spid_curso_f				int,
-in	spcomentario				varchar(300),
+in	spid_curso_f			int,
+in	spcomentario			varchar(300),
 in	spcalificacion			int,
 in	spfecha_comentario		datetime,
 in	opcion					varchar(100)
 )
 SQL SECURITY INVOKER
 begin
+	if opcion = 'promedio' then
+		select promedio(spid_curso_f) as promedio;
+	end if;
+    
 	if opcion = 'Comentarios' then
 		SELECT id_comentario, id_usuario_f, comentario, calificacion, fecha_comentario 
 		FROM comentario WHERE id_curso_f = id_curso_f;
@@ -101,11 +105,10 @@ in	sp_apellido_p 				varchar(200),
 in	sp_apellido_m 				varchar(200),
 in	sp_fch_nacimiento 			date,
 in	sp_genero 					varchar(25),
-in 	opcion						varchar(2)
+in 	opcion						varchar(50)
 )
 SQL SECURITY INVOKER
 begin
-
 	DECLARE EXIT HANDLER FOR 1062
 		BEGIN
 			SELECT 1062 as codigo,
@@ -121,6 +124,10 @@ begin
 	#	SELECT 100 as codigo,
      #   'Error en base de datos' as mensaje; 
 
+	if opcion =	'desbloquear' then
+		SELECT desbloquear_usuario(sp_email);
+	end if;
+    
 	if opcion =	'I' then
 		INSERT INTO usuario(email, contra, rol, imagen, nombre, apellido_p, apellido_m, fch_nacimiento, genero)
 		VALUES(sp_email, sp_contra, sp_rol, sp_imagen, sp_nombre, sp_apellido_p, sp_apellido_m, sp_fch_nacimiento, sp_genero);
@@ -153,6 +160,7 @@ begin
     end if;
 end$$
 DELIMITER ;
+#call sp_usuario('administrador@jaiko.com','Admin.123','admin','','Administrador','Administrador','Administrador',now(),'hombre','I');
 #------------------------------------------------------#
 DROP PROCEDURE IF EXISTS sp_usuario_inicio_sesion;
 DELIMITER $$
