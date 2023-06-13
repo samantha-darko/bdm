@@ -16,8 +16,21 @@ function VerificarSesion() {
 document.addEventListener("DOMContentLoaded", VerificarSesion)
 
 $(document).ready(function () {
-    document.querySelector('#buscador').addEventListener('submit', function (e) {
+    document.querySelector('#btn-search').addEventListener('click', function (e) {
         e.preventDefault();
+        if (document.querySelector('#nav-search').value.length === 0) {
+            document.querySelector("#ventana-modal").style.display = "block";
+            $(".modal").append("<div class='contenido-modal'><i class='fa-sharp fa-solid fa-circle-xmark'></i>" +
+                "<div class='aviso-modal'><p>Buscador</p> <h2>Debe ingresar una categoria a buscar</h2></div></div>");
+            setTimeout(function () {
+                $(".contenido-modal").remove();
+                document.querySelector("#ventana-modal").style.display = "none";
+                window.scrollTo({ top: 100, behavior: 'smooth' })
+            }, 3000)
+        } else {
+            let categoria = document.querySelector('#nav-search').value
+            window.location.href = '../paginas/Buscador.php?categoria=' + categoria;
+        }
     })
 
 
