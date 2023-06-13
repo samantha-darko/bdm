@@ -195,7 +195,7 @@ class ApiCategoria
 }
 class ApiComentario
 {
-    public function Calificacion($rating, $usuario, $curso)
+    public function Comentarios($idcurso)
     {
         try {
             $db = new DB();
@@ -204,15 +204,47 @@ class ApiComentario
                 $msj = $conn['error'];
                 return $msj;
             }
-            $sql = ("call sp_inscribir_curso(?, 0, 0, 0, 1, 'finalizarcursoinscrito');");
+            $sql = ("call sp_calificacion(0, 0, ?, 0, 0, 0, 'Comentarios');");
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(1, $rating);
-            $stmt->bindValue(2, $usuario);
-            $stmt->bindValue(3, $curso);
+            $stmt->bindValue(1, $idcurso);
+            $stmt->execute();
+            $result = $stmt->fetchAll((PDO::FETCH_ASSOC));
+            $array = [];
+
+            foreach ($result as $row) {
+                $array[] = array(
+                    'id_comentario' => $row['id_comentario'],
+                    'idusuario' => $row['id_usuario_f'],
+                    'comentario' => $row['comentario'],
+                    'calificacion' => $row['calificacion'],
+                    'fecha_comentario' => $row['fecha_comentario']
+                );
+            }
+            return $array;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+            return $msj;
+        }
+    }
+    public function Calificacion($usuario, $curso, $comentario, $calificacion)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_calificacion(0, ?, ?, ?, ?, 0, 'I');");
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(1, $usuario);
+            $stmt->bindValue(2, $curso);
+            $stmt->bindValue(3, $comentario);
+            $stmt->bindValue(4, $calificacion);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 $row = $stmt->fetch();
-                $msj = array($row['id_curso_inscrito'], $row['codigo'], $row['mensaje']);
+                $msj = array($row['codigo'], $row['mensaje']);
             } else
                 $msj = false;
             return $msj;

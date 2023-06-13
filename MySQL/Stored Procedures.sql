@@ -41,19 +41,24 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_calificacion;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_calificacion`(
-in	id_comentario			int,
-in	id_usuario_f			int,
-in	id_curso_f				int,
-in	comentario				varchar(300),
-in	calificacion			int,
-in	fecha_comentario		datetime,
+in	spid_comentario			int,
+in	spid_usuario_f			int,
+in	spid_curso_f				int,
+in	spcomentario				varchar(300),
+in	spcalificacion			int,
+in	spfecha_comentario		datetime,
 in	opcion					varchar(100)
 )
 SQL SECURITY INVOKER
 begin
+	if opcion = 'Comentarios' then
+		SELECT id_comentario, id_usuario_f, comentario, calificacion, fecha_comentario 
+		FROM comentario WHERE id_curso_f = id_curso_f;
+    end if;
+    
 	if opcion =	'I' then
 		INSERT INTO comentario(id_usuario_f, id_curso_f, comentario, calificacion)
-		VALUES(id_usuario_f, id_curso_f, comentario, calificacion);
+		VALUES(spid_usuario_f, spid_curso_f, spcomentario, spcalificacion);
 		
 		select 1 as codigo,
 		concat('registro exitoso') as mensaje;

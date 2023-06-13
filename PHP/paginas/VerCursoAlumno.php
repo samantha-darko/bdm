@@ -56,13 +56,11 @@ include_once "../php/VerCursoAlumno.php";
                 <div class="comentario">
                     <label>Agrega un comentario:</label>
                     <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
-                    <button id="btnGuardar">Guardar</button>
+                    <button id="btnAgregar">Agregar</button>
                 </div>
             </div>
-            <div class="comentarios">
-                <div>
-                    <label>Otros comentarios:</label>
-                </div>
+            <div id="comentarios" class="comentarios">
+                <h3>Otros comentarios:</h3>
             </div>
         </div>
     </div>

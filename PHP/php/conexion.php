@@ -8,7 +8,7 @@
 
 
     public function __construct(){
-        $this->host = 'localhost:3307';
+        $this->host = 'localhost:3306';
         $this->db = 'bdm';
         $this->user = 'root';
         $this->password = '';

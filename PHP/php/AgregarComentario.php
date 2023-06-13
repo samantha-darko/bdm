@@ -5,14 +5,12 @@ try {
     $api = new ApiComentario();
     $msj = '';
     session_start();
-    $rating = $_POST['rating'];
-    $opcion = $_POST['opcion'];
     $usuario = $_POST['usuario'];
     $curso = $_POST['curso'];
+    $comentario = $_POST['comentario'];
+    $calificacion = $_POST['calificacion'];
 
-    if ($opcion === 'calificacion') {
-        $msj = $api->Calificacion($rating, $usuario, $curso);
-    }
+    $msj = $api->Calificacion($usuario, $curso, $comentario, $calificacion);
 
     echo json_encode(($msj));
 

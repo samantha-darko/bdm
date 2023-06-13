@@ -1,6 +1,6 @@
 .box-container {
     display: block;
-    width: 50%;
+    width: 90%;
     margin: 60px auto 0 auto;
     padding: 30px;
     border-radius: 2px;
@@ -79,4 +79,11 @@
     width: 80%;
     margin: 5% auto;
     text-align: center;
+}
+
+
+.caja{
+    display: flex;
+    margin: 0 4%;
+    gap: 4%;
 }

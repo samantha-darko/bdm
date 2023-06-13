@@ -33,6 +33,10 @@
 .comentarios div{
     display: block;
     margin: 3% auto;
+    border: solid 1px;
+    border-radius: 5px;
+    border-color: gray;
+    padding: 3%;
 }
 
 .comentario textarea {
@@ -41,7 +45,7 @@
     margin: 2% auto;
 }
 
-#btnGuardar {
+#btnAgregar {
     display: block;
     width: 30%;
     margin: 0 0 0 auto;
@@ -217,4 +221,9 @@ button#btn-cancelar {
 
 .rating a {
     text-decoration: none;
+}
+
+.comment label{
+    display: block;
+    font-weight: bold;
 }

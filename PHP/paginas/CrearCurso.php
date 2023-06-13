@@ -50,7 +50,10 @@ include_once "../php/VerificarSesion.php"
                 <p id="vaciodescripcion">* No puede dejar la descripci&oacute;n vac&iacute;a.</p>
             </div>
             <div class="division">
+                <label>Seleccione una categoria:</label>
                 <select multiple name="lista" id="lista"></select>
+                <span>*Si aún no hay categorias creadas notifique al administrador acerca de esto en el chat.</span>
+                <span>*El uso de categorías facilita la busqueda de cursos al inscribirse.</span>
             </div>
             <div class="division2">
                 <div>

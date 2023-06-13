@@ -28,31 +28,33 @@ include_once '../php/VerificarSesion.php';
 
     </div>
 
-    <div class="box-container" id="box-container">
-        <h1>Mensajes Privados</h1>
+    <div class="caja">
+        <div class="box-container" id="box-container">
+            <h1>Mensajes Privados</h1>
 
-        <div class="enviado">
-            <h2>Enviar Mensaje</h2>
-            <form id="enviarMensajeForm">
-                <!--<label for="idEnviado">ID de remitente:</label>-->
-                <input type="hidden" id="idEnviado" name="idEnviado"><br>
+            <div class="enviado">
+                <h2>Enviar Mensaje</h2>
+                <form id="enviarMensajeForm">
+                    <!--<label for="idEnviado">ID de remitente:</label>-->
+                    <input type="hidden" id="idEnviado" name="idEnviado"><br>
 
-                <label for="idRecibido">Seleccione un usuario:</label>
-                <select name="listausuarios" id="listausuarios"></select>
-                <input type="hidden" id="idRecibido" name="idRecibido" disabled><br>
+                    <label for="idRecibido">Seleccione un usuario:</label>
+                    <select name="listausuarios" id="listausuarios"></select>
+                    <input type="hidden" id="idRecibido" name="idRecibido" disabled><br>
 
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje"></textarea><br>
+                    <label for="mensaje">Mensaje:</label><br>
+                    <textarea id="mensaje" name="mensaje"></textarea><br>
 
-                <button type="submit">Enviar</button>
-            </form>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="box-container">
-        <div class="recibidos">
-            <h2>Mensajes Recibidos</h2>
-            <div id="mensajesContainer"></div>
+        <div class="box-container">
+            <div class="recibidos">
+                <h2>Mensajes Recibidos</h2>
+                <div id="mensajesContainer"></div>
+            </div>
         </div>
     </div>
 

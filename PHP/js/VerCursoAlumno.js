@@ -27,26 +27,41 @@ function VerificarSesion() {
             console.log(res)
         }
     })
+    $.ajax({
+        url: '../php/VerComentarios.php?curso=' + curso,
+        success: function (resultado) {
+            let comentarios = JSON.parse(resultado);
+            console.log(comentarios)
+            for (let i = 0; i < comentarios.length; i++) {
+                $(".comentarios").append("<div class='comment' id='usuarionum" + comentarios[i]['idusuario'] + "'>" +
+                    "<p>Fecha: </p><label>" + comentarios[i]['fecha_comentario'] + "</label></p>" +
+                    "<p>Comentario: </p><label>" + comentarios[i]['comentario'] + "</label></p>" +
+                    "<p>Calificación: </p><label>" + comentarios[i]['calificacion'] + "</label></p>" +
+                    "</div>")
+            }
+        }
+    })
 }
 
 document.addEventListener("DOMContentLoaded", VerificarSesion)
 
 $(document).ready(function () {
 
-    document.querySelector("#btnGuardar").addEventListener('click', function (e) {
+    document.querySelector("#btnAgregar").addEventListener('click', function (e) {
         e.preventDefault()
         const valores = window.location.search;
         const urlParams = new URLSearchParams(valores);
-        var curso = urlParams.get('curso');
         var usuario = sessionStorage.getItem('idusuario')
+        var curso = urlParams.get('curso');
+        var comentario = $('#comentario').val();
         var formData = new FormData();
-        formData.append('rating', calificacion);
-        formData.append('opcion', 'calificacion');
-        formData.append('usuario', usuario)
-        formData.append('curso', curso)
+        formData.append('usuario', usuario);
+        formData.append('curso', curso);
+        formData.append('comentario', comentario)
+        formData.append('calificacion', calificacion)
         $.ajax({
             type: "POST",
-            url: "../php/Comentario.php",
+            url: "../php/AgregarComentario.php",
             cache: false,
             contentType: false,
             processData: false,
