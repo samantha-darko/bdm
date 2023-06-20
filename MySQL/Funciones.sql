@@ -16,8 +16,8 @@ begin
 end$$
 DELIMITER ;
 #----------------------------------------------------------------------------#
-DELIMITER $$
 DROP FUNCTION IF EXISTS promedio;
+DELIMITER $$
 CREATE FUNCTION promedio(id_curso INT)
 RETURNS DECIMAL(10,2)
 BEGIN

@@ -22,9 +22,17 @@ if ($stmt->rowCount() > 0) {
     $row = $stmt->fetch();
     $idinsert = array($row['idcursoinscrito'], $row['codigo'], $row['mensaje']);
 }
-if($tipo === "por nivel"){
+if ($tipo === "por nivel") {
+    $db2 = new DB();
+    $conn2 = $db2->connect();
+    $stmt2 = $conn2->prepare("call sp_pagocurso(0,?,?,?,?,0,'I');");
+    $stmt2->bindValue(1, $idinsert[0]);
+    $stmt2->bindValue(2, $total);
+    $stmt2->bindValue(3, $forma);
+    $stmt2->bindValue(4, $total);
+    $stmt2->execute();
 
-}elseif($tipo === "por curso"){
+} elseif ($tipo === "por curso") {
 
     $db2 = new DB();
     $conn2 = $db2->connect();

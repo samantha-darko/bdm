@@ -1,6 +1,7 @@
 <?php
 include_once 'Api.php';
 $items = "";
+$promedio = 0;
 try {
     $api = new ApiAlumno();
 
@@ -61,6 +62,8 @@ try {
         }
     }
 
+    $api2 = new ApiComentario();
+    $promedio = $api2->Promedio($ListaRecursos[0]['id_curso']);
 
 
 } catch (PDOException $e) {

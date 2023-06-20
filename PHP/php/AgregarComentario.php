@@ -10,7 +10,7 @@ try {
     $comentario = $_POST['comentario'];
     $calificacion = $_POST['calificacion'];
 
-    $msj = $api->Calificacion($usuario, $curso, $comentario, $calificacion);
+    $msj = $api->Agregar($usuario, $curso, $comentario, $calificacion);
 
     echo json_encode(($msj));
 

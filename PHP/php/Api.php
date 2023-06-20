@@ -224,6 +224,30 @@ class ApiCategoria
 }
 class ApiComentario
 {
+    public function Promedio($curso)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            if (is_array($conn)) {
+                $msj = $conn['error'];
+                return $msj;
+            }
+            $sql = ("call sp_calificacion(0,0,?,0,0,0,'promedio')");
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(1, $curso);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch();
+                $msj = $row['promedio'];
+            } else
+                $msj = false;
+            return $msj;
+        } catch (PDOException $e) {
+            $msj = "Error en servidor: " . $e->getMessage();
+            return $msj;
+        }
+    }
     public function Comentarios($idcurso)
     {
         try {
@@ -255,7 +279,7 @@ class ApiComentario
             return $msj;
         }
     }
-    public function Calificacion($usuario, $curso, $comentario, $calificacion)
+    public function Agregar($usuario, $curso, $comentario, $calificacion)
     {
         try {
             $db = new DB();
@@ -377,7 +401,8 @@ class ApiAlumno
                     'id_usuario_f' => $row['id_usuario_f'],
                     'titulo' => $row['titulo'],
                     'id_curso' => $row['id_curso'],
-                    'fecha_finalizado' => $row['fecha_generado']
+                    'fecha_finalizado' => $row['fecha_generado'],
+                    'id_curso_inscrito' => $row['id_curso_inscrito']
                 );
             }
             return $array;
@@ -472,7 +497,8 @@ class ApiAlumno
                     "nivel_titulo" => $row['nivel_titulo'],
                     "nivel_id" => $row['nivel_id'],
                     "recurso_tipo" => $row['recurso_tipo'],
-                    "contenido" => $row['contenido']
+                    "contenido" => $row['contenido'],
+                    "id_curso" => $row['id_curso']
                 );
             }
             return $array;

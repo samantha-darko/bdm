@@ -27,7 +27,7 @@ FROM curso;
 #---------------------- VISTA RECURSOS CURSO -----------------------#
 DROP VIEW IF EXISTS vista_recursos_curso;
 CREATE VIEW vista_recursos_curso AS
-SELECT ci.id_curso_inscrito AS id_cursoinscrito,
+SELECT c.id_curso, ci.id_curso_inscrito AS id_cursoinscrito,
 c.titulo AS curso_titulo, c.imagen AS curso_imagen, r.id_recursos AS id_recurso, r.nombre AS recurso_nombre, 
 n.titulo AS nivel_titulo, n.id_nivel AS nivel_id, r.tipo recurso_tipo, r.contenido
 FROM curso_inscrito ci
@@ -37,12 +37,11 @@ JOIN recursos r ON r.id_nivel_f = n.id_nivel;
 #---------------- VISTA CURSO INSCRITO ----------------#
 DROP VIEW IF EXISTS vista_curso_inscrito;
 CREATE VIEW vista_curso_inscrito AS
-SELECT a.fecha_inscripcion, a.finalizado, a.id_usuario_f, b.titulo, b.id_curso, c.fecha_generado
-FROM curso_inscrito AS a
-JOIN curso AS b
-ON a.id_curso_f = b.id_curso
-JOIN diploma AS c
-ON c.id_curso_inscrito_f = a.id_curso_inscrito;
+SELECT curso_inscrito.id_curso_inscrito, curso_inscrito.fecha_inscripcion, curso_inscrito.finalizado, curso_inscrito.id_usuario_f, 
+curso.titulo, curso.id_curso, if((select fecha_generado from diploma where id_curso_inscrito_f = curso_inscrito.id_curso_inscrito) != '', 
+(select fecha_generado from diploma where id_curso_inscrito_f = curso_inscrito.id_curso_inscrito), '0000-00-00') as fecha_generado
+FROM curso_inscrito
+JOIN curso ON curso_inscrito.id_curso_f = curso.id_curso;
 #-------------------- VISTA CURSO NIVEL --------------------#
 DROP VIEW IF EXISTS vista_curso_nivel;
 CREATE VIEW vista_curso_nivel AS

@@ -45,6 +45,8 @@ include_once "../php/VerCursoAlumno.php";
 
         <div class="box-container" id="box-container">
             <div class="calificacion">
+                <label>Promedio del curso: <?php echo $promedio ?></label>
+                <h2></h2>
                 <label>Califica el curso:</label>
                 <div class="rating">
                     <span class="star" onclick="rateCourse(1)">&#9734;</span>

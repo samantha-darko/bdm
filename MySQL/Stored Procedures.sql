@@ -621,13 +621,13 @@ begin
 	end if;
     
 	if opcion = 'vista_recursos_curso' then
-		SELECT id_cursoinscrito, curso_titulo, curso_imagen, id_recurso, recurso_nombre, nivel_titulo, nivel_id, recurso_tipo, contenido 
+		SELECT id_curso, id_cursoinscrito, curso_titulo, curso_imagen, id_recurso, recurso_nombre, nivel_titulo, nivel_id, recurso_tipo, contenido 
         from vista_recursos_curso
         where id_cursoinscrito = spid;
 	end if;
     
 	if opcion = 'vista_curso_inscrito' then
-		SELECT vista.fecha_inscripcion, vista.finalizado, vista.id_usuario_f, vista.titulo, vista.id_curso, vista.fecha_generado
+		SELECT vista.id_curso_inscrito, vista.fecha_inscripcion, vista.finalizado, vista.id_usuario_f, vista.titulo, vista.id_curso, vista.fecha_generado
 		FROM vista_curso_inscrito AS vista
 		WHERE vista.id_usuario_f = spid;
 	end if;
